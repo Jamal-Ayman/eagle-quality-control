@@ -4,9 +4,15 @@ Django admin customization.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
+from core.models.patch import Patch
+from core.models.parameters import Parameters
+from core.models.categories import Category
+from core.models.param_values import ParamValues
+
+
 
 # Register your models here.
-from core import models
+from core.models.user_table import User
 
 class UserAdmin(BaseUserAdmin):
     """Define the admin pages for users."""
@@ -44,4 +50,9 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-admin.site.register(models.User, UserAdmin)
+admin.site.register(User, UserAdmin)
+admin.site.register(Patch)
+admin.site.register(ParamValues)
+admin.site.register(Parameters)
+admin.site.register(Category)
+admin.site.register(Products)
