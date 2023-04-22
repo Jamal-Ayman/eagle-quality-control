@@ -4,12 +4,9 @@ Django admin customization.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from core.models.patch import Patch
-from core.models.parameters import Parameters
-from core.models.categories import Category
-from core.models.param_values import ParamValues
-
-
+from core.models import Patch
+from core.models import Parameters, Category
+from core.models import ParamValues, Products
 
 # Register your models here.
 from core.models.user_table import User
