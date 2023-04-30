@@ -5,8 +5,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from core.models import Patch
-from core.models import Parameters, Category
-from core.models import ParamValues, Products
+from core.models import Parameters
+from core.models.products import Products
+from core.models.param_values import ParamValues
+from core.models.categories import Category
 
 # Register your models here.
 from core.models.user_table import User

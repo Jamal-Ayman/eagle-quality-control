@@ -1,4 +1,5 @@
 from django.db import models
+# from core.models import User
 
 
 class ParamValues(models.Model):
@@ -9,7 +10,7 @@ class ParamValues(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, help_text="unique name of product")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    creation_user_id = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True)
     update_user_id = models.IntegerField(null=True, blank=True)
     types = models.IntegerField(
         choices=TYPES,
