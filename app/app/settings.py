@@ -39,6 +39,7 @@ ALLOWED_HOSTS.extend(
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,7 +52,7 @@ INSTALLED_APPS = [
     'rangefilter',
     'patch',
     'user',
-    'core',    
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,17 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
+# LOGIN_REDIRECT_URL = '/'
+#     # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "EAGLE CHEMICALS",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "EAGLE CHEMICALS",
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the EAGLE CHEMICALS",
+    "changeform_format": "single",
+    
+    }
