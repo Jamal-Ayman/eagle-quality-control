@@ -12,8 +12,11 @@ from core.models.categories import Category
 from core.admin_utils import ProductFilter, CategoryFilter
 from rangefilter.filter import DateTimeRangeFilter
 import io
+import os
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
+from django.utils.html import format_html
+
 
 # Register your models here.
 from core.models.user_table import User
@@ -72,16 +75,32 @@ class UserAdmin(BaseUserAdmin):
     )
 
 class PatchAdmin(admin.ModelAdmin):
-    list_display = ['name', 'created_at', 'user', 'product']
+    list_display = ['name', 'created_at', 'user', 'product', 'certificate']
     list_filter = [("created_at", DateTimeRangeFilter), ProductFilter]
     readonly_fields = ['created_at']
     search_fields = [
         "name",
         "product",
     ]
+
+    def certificate_file(self, obj):
+       html = 'No File for the Question'
+       filename = obj.certificate
+       if filename:
+           _name, ext = os.path.splitext(str(filename))
+           if ext == '.pdf':
+                html = '<embed src=\'%s\' type=\'application/pdf\' width=\'1000px\' height=\'1000px\' />' % (
+                    obj.question.url
+                )
+           else:
+               html = "<a href='%s' download>File Format Not supported, Click to Download</a>" % (
+                   obj.question.url)
+       return format_html(
+           html
+       )
     def save_model(self, request, obj, form, change):
         file = generate_certifacate()
-        obj.certificate.save("Test Certificate", file)
+        obj.certificate.save("Test_Certificate.pdf", file)
         super().save_model(request, obj, form, change)
 
 class ProductAdmin(admin.ModelAdmin):
