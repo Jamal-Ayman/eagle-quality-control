@@ -10,8 +10,13 @@ WORKDIR /app
 EXPOSE 8000
 
 RUN python -m venv /py && \
-    /py/bin/pip install --upgrade pip && \
+    /py/bin/pip install --upgrade pip && \ 
+    # apk add --update --no-cache texlive-full && \
+    # apk add --update --no-cache sox ffmpeg && \
     apk add --update --no-cache postgresql-client && \
+    apk add --no-cache build-base cairo-dev cairo cairo-tools \
+    # pillow dependencies
+    jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev &&\
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev zlib zlib-dev linux-headers && \
     /py/bin/pip install -r /tmp/requirements.txt && \

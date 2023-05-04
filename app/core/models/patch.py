@@ -18,6 +18,7 @@ class Patch(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_patch")
     parameters = models.ManyToManyField(Parameters, related_name="patch_paramters", null=True, blank=True)
     value = models.ManyToManyField(ParamValues, related_name="patch_value", null=True, blank=True)
+    certificate = models.FileField(upload_to='uploads/', blank=True, null=True)
 
     @property
     def values_details(self):
