@@ -43,3 +43,6 @@ class Patch(models.Model):
             print(serializer)
             param_list.append(serializer.data)
         return param_list
+    
+    def __str__(self):
+        return "[PATCH %s]" % (self.name)
